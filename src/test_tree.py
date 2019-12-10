@@ -1,6 +1,6 @@
 from tree_algorithm import TreeAlgorithm
 
-duration = 2
+duration = 1
 
 tree1 = TreeAlgorithm("point", duration)
 print("point tree inorder")

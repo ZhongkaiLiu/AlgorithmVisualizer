@@ -1,6 +1,6 @@
 from graph_algorithm import GraphAlgorithm
 
-duration = 2
+duration = 1
 root = 9
 
 print("point graph BFS")

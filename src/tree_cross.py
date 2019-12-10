@@ -15,6 +15,7 @@ class Tree(object):
             self.node_num = 0
             self.line_num = 0
             self.root = None
+            self.duration = 1
             # set node_color to WHITE as default
             self.node_color = 3
             # set line_color to GREEN as default
@@ -31,6 +32,10 @@ class Tree(object):
         self.line_color = line_color
         self.visited_node_color = visited_node_color
         self.visited_line_color = visited_line_color
+
+    # set duration
+    def set_duration(self, duration):
+        self.duration = duration
 
     # return a new node at (x, y)
     def new_node(self, x, y):
@@ -145,14 +150,14 @@ class Tree(object):
         node_id = node.get_id()
         self.update_line_color(node_id, self.visited_line_color)
         self.draw_tree()
-        self.display_tree(1)
+        self.display_tree(self.duration)
 
     # leave the line of this node
     def leave_line(self, node):
         node_id = node.get_id()
         self.update_line_color(node_id, self.line_color)
         self.draw_tree()
-        self.display_tree(1)
+        self.display_tree(self.duration)
 
     # visit the node alone
     def visit_node(self, node):
@@ -162,7 +167,7 @@ class Tree(object):
         #     node_id, self.visited_node_color))
         self.update_node_color(node_id, self.visited_node_color)
         self.draw_tree()
-        self.display_tree(1)
+        self.display_tree(self.duration)
 
     # entry for inorder traversal
     def inorder_traversal(self):

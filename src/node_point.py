@@ -27,9 +27,39 @@ class Node(object):
     def change_color(self, color):
         self.color = color
 
-    # return an instance of class Line that connects two point nodes
+    # return ((x1, y1), (x2, y2)) when connect this node to another node
+    def connection_position(self, node):
+        x1 = self.x
+        y1 = self.y
+        x2 = node.x
+        y2 = node.y
+
+        if (x1 == x2):
+            if y2 < y1:
+                return ((x1, y1 - 1), (x2, y2 + 1))
+            else:
+                return ((x1, y1 + 1), (x2, y2 - 1))
+        elif (y1 == y2):
+            if x2 < x1:
+                return ((x1 - 1, y1), (x2 + 1, y2))
+            else:
+                return ((x1 + 1, y1), (x2 - 1, y2))
+        elif (abs(x2 - x1) == abs(y2 - y1)):
+            if x2 > x1:
+                if y2 > y1:
+                    return ((x1 + 1, y1 + 1), (x2 - 1, y2 - 1))
+                elif y2 < y1:
+                    return ((x1 + 1, y1 - 1), (x2 - 1, y2 + 1))
+            elif x2 < x1:
+                if y2 > y1:
+                    return ((x1 - 1, y1 + 1), (x2 + 1, y2 - 1))
+                elif y2 < y1:
+                    return ((x1 - 1, y1 - 1), (x2 + 1, y2 + 1))
+
+    # return an instance of class Line that connects two cross nodes
     def line_connect_to(self, node, color):
-        return Line(self.x, self.y, node.x, node.y, color, self.screen)
+        ((x1, y1), (x2, y2)) = self.connection_position(node)
+        return Line(x1, y1, x2, y2, color, self.screen)
 
     def get_id(self):
         return self.id
