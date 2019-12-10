@@ -138,7 +138,11 @@ class Panel(object):
         if (x >= 0 and x < self.length and y >= 0 and y < self.width):
             self.screen[y][x] = color
 
-    # generate a Node in tree or graph at (x, y) with color
+    # draw a Point on the screen
+    def draw_point(self, x, y, color):
+        self.set(x, y, color)
+
+    # draw a Node of tree or graph at (x, y) with color
     def draw_node(self, x, y, color):
         # delta of a cross shape
         delta = [(0, 0), (1, 0), (0, 1), (-1, 0), (0, -1)]
@@ -179,8 +183,12 @@ class Panel(object):
 
         dx, dy = delta[i]
 
-        for i in range(0, abs(x2 - x1) + 1):
-            self.set(x1 + i * dx, y1 + i * dy, color)
+        if (x2 != x1):
+            for i in range(0, abs(x2 - x1) + 1):
+                self.set(x1 + i * dx, y1 + i * dy, color)
+        else:
+            for i in range(0, abs(y2 - y1) + 1):
+                self.set(x1 + i * dx, y1 + i * dy, color)
 
     # connect two nodes at (x1, y1) and (x2, y2) using line with color
     # Only can generate a horizontal or vertical or diagonal line

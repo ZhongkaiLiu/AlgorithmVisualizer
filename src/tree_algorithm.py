@@ -1,12 +1,17 @@
-import panel
-import tree
+from panel import Panel
+import tree_cross
+import tree_point
 
 
 class TreeAlgorithm(object):
 
-    def __init__(self):
-        self.screen = panel.Panel()
-        self.tree = tree.Tree(self.screen)
+    def __init__(self, node_shape, duration):
+        self.screen = Panel()
+        if (node_shape == "cross"):
+            self.tree = tree_cross.Tree(self.screen)
+        else:
+            self.tree = tree_point.Tree(self.screen)
+        self.tree.set_duration(duration)
 
     # display the initial tree on the panel
     def display_init(self):
